@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   openBtn.addEventListener("click", () => {
     for (let i = 0; i < jobSites.length; i++) {
-      const tab = window.open(jobSites[i].url, "_blank", "noopener,noreferrer");
+      const tab = window.open(jobSites[i].url, "_blank");
       if (tab) openedTabs.push(tab);
       else alert("Please allow pop-ups to open multiple tabs.");
     }
