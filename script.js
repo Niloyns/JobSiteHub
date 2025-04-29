@@ -22,17 +22,18 @@ document.addEventListener("DOMContentLoaded", () => {
   const openedTabs = [];
 
   openBtn.addEventListener("click", () => {
-    jobSites.forEach((site) => {
-      const newTab = window.open(site.url, "_blank");
-      if (newTab) openedTabs.push(newTab);
-      else
-        alert("Popup blocked! Allow popups to open tabs.(Desible AD Blocker)");
-    });
+    for (let i = 0; i < jobSites.length; i++) {
+      const tab = window.open(jobSites[i].url, "_blank", "noopener,noreferrer");
+      if (tab) openedTabs.push(tab);
+      else alert("Please allow pop-ups to open multiple tabs.");
+    }
   });
 
   closeBtn.addEventListener("click", () => {
-    openedTabs.forEach((tab) => {
-      if (!tab.closed) tab.close();
-    });
+    for (let i = 0; i < openedTabs.length; i++) {
+      if (openedTabs[i] && !openedTabs[i].closed) {
+        openedTabs[i].close();
+      }
+    }
   });
 });
