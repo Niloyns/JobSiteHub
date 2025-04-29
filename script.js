@@ -17,16 +17,22 @@ document.addEventListener("DOMContentLoaded", () => {
     { name: "JobStreet India", url: "https://www.jobstreet.co.in/" },
   ];
 
-  const launchBtn = document.getElementById("button");
+  const openBtn = document.getElementById("button");
+  const closeBtn = document.getElementById("closeTabs");
+  const openedTabs = [];
 
-  launchBtn.addEventListener("click", () => {
+  openBtn.addEventListener("click", () => {
     jobSites.forEach((site) => {
       const newTab = window.open(site.url, "_blank");
-      if (!newTab) {
-        alert(
-          "Please allow pop-ups in your browser for this site to work properly.(Remove Ad Blocker)"
-        );
-      }
+      if (newTab) openedTabs.push(newTab);
+      else
+        alert("Popup blocked! Allow popups to open tabs.(Desible AD Blocker)");
+    });
+  });
+
+  closeBtn.addEventListener("click", () => {
+    openedTabs.forEach((tab) => {
+      if (!tab.closed) tab.close();
     });
   });
 });
